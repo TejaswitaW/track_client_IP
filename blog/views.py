@@ -22,8 +22,9 @@ def dashboard(request):
         posts = Post.objects.all()
         user = request.user
         full_name = user.get_full_name()
+        ip = request.session.get('ip',0)
         groups = user.groups.all()
-        return render(request,'blog/dashboard.html',{'posts':posts,'full_name':full_name,'groups':groups})
+        return render(request,'blog/dashboard.html',{'posts':posts,'full_name':full_name,'groups':groups,'ip':ip})
     else:
         return HttpResponseRedirect('/login/')
 
